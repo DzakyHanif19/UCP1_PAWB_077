@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Bibit</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Daftar Bibit</h1>
+
+    <!-- Link untuk menambah bibit dan navigasi lainnya -->
+    <div class="mb-3">
+      <a href="/bibitmysql/add" class="btn btn-success">Tambah Bibit</a>
+      <a href="/pupukmysql" class="btn btn-info">Pupuk MySql</a>
+      <a href="/pupukmockup" class="btn btn-primary">Ke Pupuk Mock Database</a>
+    </div>
+
+    <!-- Tabel Daftar Bibit -->
+    <% if (bibit && bibit.length > 0) { %>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Aksi</th>
+            <th>Jenis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% bibit.forEach(item => { %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= item.namabibit %></td>
+              <td><%= item.jenis %></td>
+             
+              <td>
+                <a href="bibitmysql/edit/<%= item.id %>" class="btn btn-warning btn-sm">Edit</a> | 
+                <a href="/bibitmysql/delete/<%= item.id %>" class="btn btn-danger btn-sm" onclick="return confirm('Hapus data ini?');">Hapus</a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>Tidak ada data bibit.</p>
+    <% } %>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
